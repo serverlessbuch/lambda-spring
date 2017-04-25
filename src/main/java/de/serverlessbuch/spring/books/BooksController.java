@@ -1,9 +1,10 @@
 package de.serverlessbuch.spring.books;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,12 +19,12 @@ public class BooksController {
 
     private final BookService service;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public List<Book> getBooks() {
         return service.getBooks();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public List<Book> addBook(@RequestBody Book book) {
         return service.addBook(book);
     }

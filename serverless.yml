@@ -9,6 +9,7 @@ provider:
   region: eu-central-1
   memorySize: 256
   timeout: 20
+  deploymentBucket: dasniko.serverless.deployments.${self:provider.region}
 
 package:
   artifact: target/lambda-spring.jar
