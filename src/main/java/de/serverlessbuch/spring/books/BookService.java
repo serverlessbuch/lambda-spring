@@ -1,32 +1,37 @@
 package de.serverlessbuch.spring.books;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Niko Köbler, http://www.n-k.de, @dasniko
  */
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class BookService {
 
-    private List<Book> books = new ArrayList<>();
-
-    @PostConstruct
-    public void init() {
-        books.add(new Book("Michael Simons", "Spring Boot 2.0"));
-        books.add(new Book("Niko Köbler", "Serverless Computing"));
-    }
+    private final BookRepository repository;
 
     public List<Book> getBooks() {
-        return books;
+        return (List<Book>) repository.findAll();
+    }
+
+    public Book getBook(String id) {
+        return repository.findOne(id);
+    }
+
+    public List<Book> deleteBook(String id) {
+        repository.delete(id);
+        return getBooks();
     }
 
     public List<Book> addBook(Book book) {
-        books.add(book);
-        return books;
+        repository.save(book);
+        return getBooks();
     }
 
 }

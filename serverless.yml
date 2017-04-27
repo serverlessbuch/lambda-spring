@@ -10,12 +10,24 @@ provider:
   memorySize: 256
   timeout: 20
   deploymentBucket: dasniko.serverless.deployments.${self:provider.region}
+  environment:
+    DYNAMODB_TABLE: Book
+  iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Query
+          - dynamodb:Scan
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:DeleteItem
+        Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 package:
   artifact: target/lambda-spring.jar
 
 functions:
-  spring:
+  api:
     handler: de.serverlessbuch.lambda.LambdaHandler
     events:
       - http:
