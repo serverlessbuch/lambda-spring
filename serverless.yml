@@ -28,7 +28,7 @@ package:
 
 functions:
   api:
-    handler: de.serverlessbuch.lambda.LambdaHandler
+    handler: de.serverlessbuch.spring.LambdaHandler
     events:
       - http:
           path: /{proxy+}

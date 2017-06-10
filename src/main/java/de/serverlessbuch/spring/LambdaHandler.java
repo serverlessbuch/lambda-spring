@@ -1,4 +1,4 @@
-package de.serverlessbuch.lambda;
+package de.serverlessbuch.spring;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.internal.model.AwsProxyRequest;
@@ -6,7 +6,6 @@ import com.amazonaws.serverless.proxy.internal.model.AwsProxyResponse;
 import com.amazonaws.serverless.proxy.spring.SpringLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import de.serverlessbuch.spring.SpringAppConfig;
 
 /**
  * @author Niko Köbler, http://www.n-k.de, @dasniko
